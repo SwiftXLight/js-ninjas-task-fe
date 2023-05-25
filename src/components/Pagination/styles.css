@@ -1,0 +1,7 @@
+.pagination {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    justify-content: center;
+    cursor: pointer;
+}

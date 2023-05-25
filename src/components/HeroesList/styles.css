@@ -1,0 +1,11 @@
+.heroes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.list-image {
+    width: 180px;
+    height: 150px;
+}
