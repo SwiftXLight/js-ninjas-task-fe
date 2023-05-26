@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 60px;
 }
 
 .inputs-form {
@@ -19,6 +20,21 @@
 
 .btn {
     margin-top: 20px;
+}
+
+.existing-images-wrapper {
+    text-align: center;
+}
+
+.existing-images {
+    display: flex;
+    gap: 20px;
+}
+
+.existing-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .existing-image {

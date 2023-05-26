@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteImage, getHeroById, updateHero, uploadPhotos } from '../../api/api';
+import { deleteImage, getHeroById, updateHero, uploadPhotosAppend } from '../../api/api';
 import noImage from '../../assets/no_image.png';
 import './styles.css';
 import { IHero } from '../../shared/interfaces';
@@ -51,12 +51,12 @@ function EditHero() {
   const handleUpdateHero = async (): Promise<void> => {
     try {
       if (hero) {
-        const updatedHeroData = {...textValues};
+        const updatedHeroData = { ...textValues };
 
         await updateHero(hero.id, updatedHeroData);
 
         if (photos.length > 0) {
-          await uploadPhotos(hero.id, photos);
+          await uploadPhotosAppend(hero.id, photos);
         }
 
         navigate('/');
@@ -77,7 +77,7 @@ function EditHero() {
     } catch (error) {
       console.error('Error deleting image:', error);
     }
-  };  
+  };
 
   const handleBackToList = (): void => {
     navigate('/');
@@ -152,22 +152,22 @@ function EditHero() {
       <div className="existing-images-wrapper">
         <h3>Existing Photos</h3>
         <div className="existing-images">
-        {hero.images && hero.images.length > 0 ? (
-          hero.images.map((image, index) => (
-            <div key={index} className="existing-image-container">
-              <img
-                className="existing-image"
-                src={`http://localhost:5000/${image}`}
-                alt={hero.nickname}
-              />
-              <button className="delete-button" onClick={() => handleDeleteImage(image)}>
-                Delete
-              </button>
-            </div>
-          ))
-        ) : (
-          <img className="existing-image" src={noImage} alt="Not found" />
-        )}
+          {hero.images && hero.images.length > 0 ? (
+            hero.images.map((image, index) => (
+              <div key={index} className="existing-image-container">
+                <img
+                  className="existing-image"
+                  src={`http://localhost:5000/${image}`}
+                  alt={hero.nickname}
+                />
+                <button className="delete-button" onClick={() => handleDeleteImage(image)}>
+                  Delete
+                </button>
+              </div>
+            ))
+          ) : (
+            <img className="existing-image" src={noImage} alt="Not found" />
+          )}
         </div>
       </div>
       <button className="btn" onClick={handleUpdateHero}>

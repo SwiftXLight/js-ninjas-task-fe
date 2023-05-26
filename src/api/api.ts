@@ -76,4 +76,24 @@ export const deleteImage = async (id: number, filename: string): Promise<void> =
   }
 };
 
+export const uploadPhotosAppend = async (id: number, files: File[]): Promise<IHero> => {
+  try {
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
+
+    const response = await axios.post(`${API_URL}/heroes/${id}/upload/append`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error uploading images:', error);
+    throw error;
+  }
+};
+
 export {};
