@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { IHeroResponse } from '../../shared/interfaces';
+import { useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { fetchHeroes, deleteHero } from '../../api/api';
 import './styles.css';
 import noImage from '../../assets/no_image.png';
 
 function HeroesList() {
+  const navigate = useNavigate();
   const [heroes, setHeroes] = useState<IHeroResponse[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -38,6 +40,14 @@ function HeroesList() {
     }
   };
 
+  const handleHeroDetails = async (id: number): Promise<void> => {
+    try {
+      navigate(`/hero/${id}`);
+    } catch (error) {
+      console.error('Error getting hero details:', error);
+    }
+  };
+
   return (
     <div>
       <div className='heroes-list'>
@@ -58,6 +68,7 @@ function HeroesList() {
               />
             )}
             <button onClick={() => handleDelete(hero.id)}>Delete</button>
+            <button onClick={() => handleHeroDetails(hero.id)}>Details</button>
           </div>
         ))}
       </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IHeroResponse } from '../shared/interfaces';
+import { Hero, IHeroResponse } from '../shared/interfaces';
 
 const API_URL = 'http://localhost:5000';
 
@@ -24,6 +24,15 @@ export const deleteHero = async (id: number): Promise<void> => {
     await axios.delete(`${API_URL}/heroes/${id}`);
   } catch (error) {
     throw new Error(`Error deleting hero with ID: ${id}`);
+  }
+};
+
+export const getHeroById = async (id: number): Promise<Hero> => {
+  try {
+    const response = await axios.get(`http://localhost:5000/heroes/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error retrieving hero by ID');
   }
 };
 
