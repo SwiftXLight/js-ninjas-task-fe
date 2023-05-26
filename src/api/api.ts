@@ -36,7 +36,7 @@ export const getHeroById = async (id: number): Promise<IHero> => {
   }
 };
 
-export const createHero = async (heroData: ICreateHero) => {
+export const createHero = async (heroData: ICreateHero): Promise<IHero> => {
   try {
     const response = await axios.post(`${API_URL}/heroes`, heroData);
     return response.data;
@@ -45,7 +45,7 @@ export const createHero = async (heroData: ICreateHero) => {
   }
 };
 
-export const uploadPhotos = async (heroId: number, photos: File[]) => {
+export const uploadPhotos = async (heroId: number, photos: File[]): Promise<void> => {
   try {
     const formData = new FormData();
     photos.forEach((photo) => {
@@ -54,6 +54,15 @@ export const uploadPhotos = async (heroId: number, photos: File[]) => {
     await axios.post(`${API_URL}/heroes/${heroId}/upload`, formData);
   } catch (error) {
     throw new Error('Error uploading photos');
+  }
+};
+
+export const updateHero = async (id: number, heroData: ICreateHero): Promise<IHero> => {
+  try {
+    const response = await axios.put(`${API_URL}/heroes/${id}`, heroData);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error updating hero');
   }
 };
 

@@ -27,6 +27,10 @@ function HeroDetails() {
     navigate('/');
   };
 
+  const handleEditHero = (): void => {
+    navigate(`/edit/${id}`);
+  };
+
   if (!hero) {
     return <div>Loading...</div>;
   }
@@ -55,7 +59,8 @@ function HeroDetails() {
           />
         )}
       </div>
-      <button onClick={handleBackToList}>Back to List</button>
+      <button className='btn' onClick={handleEditHero}>Edit</button>
+      <button className='btn' onClick={handleBackToList}>Back to List</button>
     </div>
   );
 }
