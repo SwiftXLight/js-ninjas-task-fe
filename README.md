@@ -31,11 +31,6 @@ This README provides instructions on how to run the web application, which consi
    npm install
    ```
 
-### Configuration
-
-1. Create a `.env` file in the root directory of the frontend repository.
-2. Copy the contents of `.env.example` into `.env`.
-3. Modify the variables in the `.env` file to match your desired configuration.
 
 ### Running the Application
 
@@ -84,15 +79,16 @@ This README provides instructions on how to run the web application, which consi
 3.  Create a new database for the application:
     
     
-    `CREATE DATABASE heroes_app;` 
+    `CREATE DATABASE heroes;` 
     
 4.  Modify the `.env` file in the backend repository to update the database connection configuration:
     
     ```shell
+    PORT=5000
     DB_HOST=localhost
 	DB_PORT=3306
 	DB_USER=<your-mysql-username>
-	DB_PASSWORD=<your-mysql-password>
+	DB_PASS=<your-mysql-password>
 	DB_NAME=heroes
 	```
 
