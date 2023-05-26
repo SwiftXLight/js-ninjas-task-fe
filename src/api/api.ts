@@ -19,4 +19,12 @@ export const fetchHeroes = async (page: number, limit: number): Promise<{ data: 
   }
 };
 
+export const deleteHero = async (id: number): Promise<void> => {
+  try {
+    await axios.delete(`${API_URL}/heroes/${id}`);
+  } catch (error) {
+    throw new Error(`Error deleting hero with ID: ${id}`);
+  }
+};
+
 export {};

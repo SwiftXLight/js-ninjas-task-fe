@@ -5,7 +5,13 @@
     gap: 40px;
 }
 
-.list-image {
+.hero-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-image {
     width: 180px;
     height: 150px;
 }

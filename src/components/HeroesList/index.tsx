@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IHeroResponse } from '../../shared/interfaces';
 import Pagination from '../Pagination';
-import { fetchHeroes } from '../../api/api';
+import { fetchHeroes, deleteHero } from '../../api/api';
 import './styles.css';
+import noImage from '../../assets/no_image.png';
 
 function HeroesList() {
   const [heroes, setHeroes] = useState<IHeroResponse[]>([]);
@@ -28,19 +29,35 @@ function HeroesList() {
     setCurrentPage(page);
   };
 
+  const handleDelete = async (id: number): Promise<void> => {
+    try {
+      await deleteHero(id);
+      fetchData(currentPage);
+    } catch (error) {
+      console.error('Error deleting hero:', error);
+    }
+  };
+
   return (
     <div>
       <div className='heroes-list'>
         {heroes.map((hero) => (
-          <div key={hero.id}>
+          <div key={hero.id} className='hero-item'>
             <h2>{hero.nickname}</h2>
-            {hero.images && (
+            {hero.images ? (
               <img
-                className='list-image'
+                className='hero-image'
                 src={`http://localhost:5000/${hero.images}`}
                 alt={hero.nickname}
               />
+            ) : (
+              <img
+                className='hero-image'
+                src={noImage}
+                alt='Not found'
+              />
             )}
+            <button onClick={() => handleDelete(hero.id)}>Delete</button>
           </div>
         ))}
       </div>
