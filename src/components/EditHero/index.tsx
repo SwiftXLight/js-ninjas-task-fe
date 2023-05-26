@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getHeroById, updateHero, uploadPhotos } from '../../api/api';
+import { deleteImage, getHeroById, updateHero, uploadPhotos } from '../../api/api';
 import noImage from '../../assets/no_image.png';
 import './styles.css';
 import { IHero } from '../../shared/interfaces';
@@ -65,6 +65,19 @@ function EditHero() {
       console.error('Error updating hero:', error);
     }
   };
+
+  const handleDeleteImage = async (filename: string) => {
+    try {
+      if (hero) {
+        const updatedFilename = filename.replace(`${hero.id}/`, '');
+        await deleteImage(hero.id, updatedFilename);
+        const updatedHero = await getHeroById(Number(id));
+        setHero(updatedHero);
+      }
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
+  };  
 
   const handleBackToList = () => {
     navigate('/');
@@ -139,18 +152,22 @@ function EditHero() {
       <div className="existing-images-wrapper">
         <h3>Existing Photos</h3>
         <div className="existing-images">
-          {hero.images && hero.images.length > 0 ? (
-            hero.images.map((image, index) => (
+        {hero.images && hero.images.length > 0 ? (
+          hero.images.map((image, index) => (
+            <div key={index} className="existing-image-container">
               <img
-                key={index}
                 className="existing-image"
                 src={`http://localhost:5000/${image}`}
                 alt={hero.nickname}
               />
-            ))
-          ) : (
-            <img className="existing-image" src={noImage} alt="Not found" />
-          )}
+              <button className="delete-button" onClick={() => handleDeleteImage(image)}>
+                Delete
+              </button>
+            </div>
+          ))
+        ) : (
+          <img className="existing-image" src={noImage} alt="Not found" />
+        )}
         </div>
       </div>
       <button className="btn" onClick={handleUpdateHero}>

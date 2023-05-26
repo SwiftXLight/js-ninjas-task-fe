@@ -66,4 +66,14 @@ export const updateHero = async (id: number, heroData: ICreateHero): Promise<IHe
   }
 };
 
+export const deleteImage = async (id: number, filename: string) => {
+  try {
+    const response = await axios.delete(`${API_URL}/heroes/${id}/images/${filename}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting image:', error);
+    throw error;
+  }
+};
+
 export {};
