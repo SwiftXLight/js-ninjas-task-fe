@@ -48,8 +48,12 @@ function HeroesList() {
     }
   };
 
+  const handleCreateHero = (): void => {
+    navigate('/create');
+  };
+
   return (
-    <div>
+    <div className='wrapper'>
       <div className='heroes-list'>
         {heroes.map((hero) => (
           <div key={hero.id} className='hero-item'>
@@ -77,6 +81,7 @@ function HeroesList() {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+      <button onClick={handleCreateHero}>Create New Hero</button>
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getHeroById } from '../../api/api';
-import { Hero } from '../../shared/interfaces';
 import noImage from '../../assets/no_image.png';
 import './styles.css';
+import { IHero } from '../../shared/interfaces';
 
 function HeroDetails() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [hero, setHero] = useState<Hero | null>(null);
+  const [hero, setHero] = useState<IHero | null>(null);
 
   useEffect(() => {
-    const fetchHeroDetails = async () => {
+    const fetchHeroDetails = async (): Promise<void> => {
       try {
         const response = await getHeroById(Number(id));
         setHero(response);
@@ -23,7 +23,7 @@ function HeroDetails() {
     fetchHeroDetails();
   }, [id]);
 
-  const handleBackToList = () => {
+  const handleBackToList = (): void => {
     navigate('/');
   };
 

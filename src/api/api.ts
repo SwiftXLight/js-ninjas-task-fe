@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Hero, IHeroResponse } from '../shared/interfaces';
+import { ICreateHero, IHero, IHeroResponse } from '../shared/interfaces';
 
 const API_URL = 'http://localhost:5000';
 
@@ -27,12 +27,33 @@ export const deleteHero = async (id: number): Promise<void> => {
   }
 };
 
-export const getHeroById = async (id: number): Promise<Hero> => {
+export const getHeroById = async (id: number): Promise<IHero> => {
   try {
     const response = await axios.get(`http://localhost:5000/heroes/${id}`);
     return response.data;
   } catch (error) {
     throw new Error('Error retrieving hero by ID');
+  }
+};
+
+export const createHero = async (heroData: ICreateHero) => {
+  try {
+    const response = await axios.post(`${API_URL}/heroes`, heroData);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error creating hero');
+  }
+};
+
+export const uploadPhotos = async (heroId: number, photos: File[]) => {
+  try {
+    const formData = new FormData();
+    photos.forEach((photo) => {
+      formData.append('files', photo);
+    });
+    await axios.post(`${API_URL}/heroes/${heroId}/upload`, formData);
+  } catch (error) {
+    throw new Error('Error uploading photos');
   }
 };
 

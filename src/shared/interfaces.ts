@@ -4,7 +4,7 @@ export interface IHeroResponse {
     images: string | null;
 }
 
-export interface Hero {
+export interface IHero {
     id: number;
     nickname: string;
     realName: string;
@@ -14,3 +14,10 @@ export interface Hero {
     images: string[] | null;
 }
   
+export interface ICreateHero {
+    nickname: string;
+    realName: string;
+    originDescription: string;
+    superpowers: string;
+    catchPhrase: string;
+}
