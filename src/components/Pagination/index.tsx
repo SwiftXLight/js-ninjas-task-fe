@@ -16,7 +16,7 @@ const Pagination: React.FC<PaginationProps> = ({
     onPageChange(page);
   };
 
-  const renderPageNumbers = () => {
+  const renderPageNumbers = (): JSX.Element[] => {
     const pageNumbers = [];
     const range = 1;
 

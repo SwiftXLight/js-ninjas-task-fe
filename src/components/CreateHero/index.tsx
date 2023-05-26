@@ -24,7 +24,7 @@ function CreateHero() {
     setPhotos(files);
   };
 
-  const handleCreateHero = async () => {
+  const handleCreateHero = async (): Promise<void> => {
     try {
       const createdHero = await createHero(textValues);
       

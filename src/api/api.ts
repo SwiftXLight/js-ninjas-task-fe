@@ -66,7 +66,7 @@ export const updateHero = async (id: number, heroData: ICreateHero): Promise<IHe
   }
 };
 
-export const deleteImage = async (id: number, filename: string) => {
+export const deleteImage = async (id: number, filename: string): Promise<void> => {
   try {
     const response = await axios.delete(`${API_URL}/heroes/${id}/images/${filename}`);
     return response.data;

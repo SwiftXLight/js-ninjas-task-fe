@@ -48,7 +48,7 @@ function EditHero() {
     setPhotos(files);
   };
 
-  const handleUpdateHero = async () => {
+  const handleUpdateHero = async (): Promise<void> => {
     try {
       if (hero) {
         const updatedHeroData = {...textValues};
@@ -66,7 +66,7 @@ function EditHero() {
     }
   };
 
-  const handleDeleteImage = async (filename: string) => {
+  const handleDeleteImage = async (filename: string): Promise<void> => {
     try {
       if (hero) {
         const updatedFilename = filename.replace(`${hero.id}/`, '');
@@ -79,7 +79,7 @@ function EditHero() {
     }
   };  
 
-  const handleBackToList = () => {
+  const handleBackToList = (): void => {
     navigate('/');
   };
 
