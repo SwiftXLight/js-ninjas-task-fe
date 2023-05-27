@@ -37,11 +37,11 @@ function HeroDetails() {
 
   return (
     <div className='hero-wrapper'>
-      <h2>{hero.nickname}</h2>
-      <p>Real Name: {hero.realName}</p>
-      <p>Origin Description: {hero.originDescription}</p>
-      <p>Superpowers: {hero.superpowers}</p>
-      <p>Catch Phrase: {hero.catchPhrase}</p>
+      <h2 className='description'>{hero.nickname}</h2>
+      <p className='description'>Real Name: {hero.realName}</p>
+      <p className='description'>Origin Description: {hero.originDescription}</p>
+      <p className='description'>Superpowers: {hero.superpowers}</p>
+      <p className='description'>Catch Phrase: {hero.catchPhrase}</p>
       <div className="hero-images">
         {hero.images && hero.images.map((image, index) => (
           <img

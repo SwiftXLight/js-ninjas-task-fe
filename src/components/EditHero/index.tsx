@@ -38,7 +38,7 @@ function EditHero() {
     fetchHeroDetails();
   }, [id]);
 
-  const handleTextValueChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleTextValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setTextValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -99,6 +99,7 @@ function EditHero() {
             <input
               type="text"
               name="nickname"
+              className='input'
               value={textValues.nickname}
               onChange={handleTextValueChange}
             />
@@ -109,6 +110,7 @@ function EditHero() {
             <input
               type="text"
               name="realName"
+              className='input'
               value={textValues.realName}
               onChange={handleTextValueChange}
             />
@@ -116,9 +118,9 @@ function EditHero() {
           <label>
             Origin description:
             <br />
-            <input
-              type="text"
+            <textarea
               name="originDescription"
+              className='textarea'
               value={textValues.originDescription}
               onChange={handleTextValueChange}
             />
@@ -126,9 +128,9 @@ function EditHero() {
           <label>
             Superpowers:
             <br />
-            <input
-              type="text"
+            <textarea
               name="superpowers"
+              className='textarea'
               value={textValues.superpowers}
               onChange={handleTextValueChange}
             />
@@ -136,9 +138,9 @@ function EditHero() {
           <label>
             Catch phrase:
             <br />
-            <input
-              type="text"
+            <textarea
               name="catchPhrase"
+              className='textarea'
               value={textValues.catchPhrase}
               onChange={handleTextValueChange}
             />

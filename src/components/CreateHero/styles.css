@@ -11,6 +11,15 @@
     gap: 15px;
 }
 
+.textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.input {
+    width: 100%;
+}
+
 .load-file-wrapper {
     display: flex;
     flex-direction: column;

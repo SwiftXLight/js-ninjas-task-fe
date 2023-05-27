@@ -14,7 +14,7 @@ function CreateHero() {
   });
   const [photos, setPhotos] = useState<File[]>([]);
 
-  const handleTextValueChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleTextValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setTextValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -27,7 +27,7 @@ function CreateHero() {
   const handleCreateHero = async (): Promise<void> => {
     try {
       const createdHero = await createHero(textValues);
-      
+
       const heroId = createdHero.id;
 
       if (photos.length > 0) {
@@ -56,6 +56,7 @@ function CreateHero() {
             <input
               type="text"
               name="nickname"
+              className='input'
               value={textValues.nickname}
               onChange={handleTextValueChange}
             />
@@ -66,6 +67,7 @@ function CreateHero() {
             <input
               type="text"
               name="realName"
+              className='input'
               value={textValues.realName}
               onChange={handleTextValueChange}
             />
@@ -73,31 +75,31 @@ function CreateHero() {
           <label>
             Origin description:
             <br />
-            <input
-              type="text"
+            <textarea
               name="originDescription"
               value={textValues.originDescription}
               onChange={handleTextValueChange}
+              className='textarea'
             />
           </label>
           <label>
             Superpowers:
             <br />
-            <input
-              type="text"
+            <textarea
               name="superpowers"
               value={textValues.superpowers}
               onChange={handleTextValueChange}
+              className='textarea'
             />
           </label>
           <label>
             Catch phrase:
             <br />
-            <input
-              type="text"
+            <textarea
               name="catchPhrase"
               value={textValues.catchPhrase}
               onChange={handleTextValueChange}
+              className='textarea'
             />
           </label>
         </form>
