@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    margin-top: 40px;
 }
 
 .heroes-list {
@@ -16,12 +17,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 10px;
     gap: 10px;
     border: 1px solid black;
+    max-width: 180px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.hero-nickname {
+    max-width: 180px;
 }
 
 .hero-image {
     width: 180px;
     height: 150px;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
