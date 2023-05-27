@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ICreateHero, IHero, IHeroResponse } from '../shared/interfaces';
 
-const API_URL = 'http://localhost:5000';
+export const API_URL = 'http://localhost:5000';
 
 export const fetchHeroes = async (page: number, limit: number, nickname?: string): Promise<{ data: IHeroResponse[]; totalHeroes: number }> => {
   try {

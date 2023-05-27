@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IHeroResponse } from '../../shared/interfaces';
 import { useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
-import { fetchHeroes, deleteHero } from '../../api/api';
+import { fetchHeroes, deleteHero, API_URL } from '../../api/api';
 import './styles.css';
 import noImage from '../../assets/no_image.png';
 
@@ -77,7 +77,7 @@ function HeroesList() {
                 {hero.images ? (
                   <img
                     className='hero-image'
-                    src={`http://localhost:5000/${hero.images}`}
+                    src={`${API_URL}/${hero.images}`}
                     alt={hero.nickname}
                   />
                 ) : (

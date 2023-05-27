@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteImage, getHeroById, updateHero, uploadPhotosAppend } from '../../api/api';
+import { API_URL, deleteImage, getHeroById, updateHero, uploadPhotosAppend } from '../../api/api';
 import noImage from '../../assets/no_image.png';
 import './styles.css';
 import { IHero } from '../../shared/interfaces';
@@ -157,7 +157,7 @@ function EditHero() {
               <div key={index} className="existing-image-container">
                 <img
                   className="existing-image"
-                  src={`http://localhost:5000/${image}`}
+                  src={`${API_URL}/${image}`}
                   alt={hero.nickname}
                 />
                 <button className="delete-button" onClick={() => handleDeleteImage(image)}>
