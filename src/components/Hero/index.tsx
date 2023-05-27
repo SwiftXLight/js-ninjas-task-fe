@@ -43,21 +43,22 @@ function HeroDetails() {
       <p className='description'>Superpowers: {hero.superpowers}</p>
       <p className='description'>Catch Phrase: {hero.catchPhrase}</p>
       <div className="hero-images">
-        {hero.images && hero.images.map((image, index) => (
+      {hero.images && hero.images.length > 0 ? (
+        hero.images.map((image, index) => (
           <img
             key={index}
             className="hero-image"
             src={`${API_URL}/${image}`}
             alt={hero.nickname}
           />
-        ))}
-        {!hero.images && (
-          <img
-            className="hero-image"
-            src={noImage}
-            alt="Not found"
-          />
-        )}
+        ))
+      ) : (
+        <img
+          className="hero-image"
+          src={noImage}
+          alt="Not found"
+        />
+      )}
       </div>
       <button className='btn' onClick={handleEditHero}>Edit</button>
       <button className='btn' onClick={handleBackToList}>Back to List</button>
