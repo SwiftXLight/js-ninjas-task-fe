@@ -18,14 +18,22 @@ function HeroesList() {
   const [noHeroes, setNoHeroes] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchData(currentPage, filter);
+    const savedPage = Number(localStorage.getItem('currentPage'));
+    setCurrentPage(savedPage || 1);
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem('currentPage', currentPage.toString());
+  }, [currentPage]);
+
+  useEffect(() => {
+    fetchData(currentPage, filter);
   }, [currentPage, filter]);
 
   const fetchData = async (page: number, nickname: string): Promise<void> => {
     try {
       const { data, totalHeroes: total } = await fetchHeroes(page, 5, nickname);
-
+  
       setHeroes(data);
       setTotalPages(Math.ceil(total / 5));
       setFilterMatches(data.length > 0);
@@ -33,7 +41,7 @@ function HeroesList() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
+  };  
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);
