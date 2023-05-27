@@ -61,7 +61,7 @@ function CreateHero() {
     <div className='create-wrapper'>
       <h2>Create a New Hero</h2>
       <div>
-        <h3>Step 1: Fill in Text Values</h3>
+        <h3 className='step-first-header'>Step 1: Fill in Text Values</h3>
         <form className='inputs-form'>
           <label>
             Nickname:

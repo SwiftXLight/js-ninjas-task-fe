@@ -103,7 +103,7 @@ function EditHero() {
     <div className="edit-wrapper">
       <h2>Edit Hero: {hero.nickname}</h2>
       <div>
-        <h3>Step 1: Update Text Values</h3>
+        <h3 className='step-first-header'>Step 1: Update Text Values</h3>
         <form className="inputs-form">
           <label>
             Nickname:
