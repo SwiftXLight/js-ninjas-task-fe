@@ -13,7 +13,7 @@ function HeroesList() {
     Number(localStorage.getItem('currentPage')) || 1
   );
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [filter, setFilter] = useState<string>('');
+  const [filter, setFilter] = useState<string>(localStorage.getItem('filter') || '');
   const [filterMatches, setFilterMatches] = useState<boolean>(true);
   const [noHeroes, setNoHeroes] = useState<boolean>(false);
 
@@ -24,7 +24,8 @@ function HeroesList() {
 
   useEffect(() => {
     localStorage.setItem('currentPage', currentPage.toString());
-  }, [currentPage]);
+    localStorage.setItem('filter', filter);
+  }, [currentPage, filter]);  
 
   useEffect(() => {
     fetchData(currentPage, filter);
