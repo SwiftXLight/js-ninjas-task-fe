@@ -13,6 +13,7 @@ function CreateHero() {
     catchPhrase: '',
   });
   const [photos, setPhotos] = useState<File[]>([]);
+  const [errMessage, setErrMessage] = useState<string | null>();
 
   const handleTextValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
@@ -26,19 +27,31 @@ function CreateHero() {
 
   const handleCreateHero = async (): Promise<void> => {
     try {
+      if (
+        !textValues.nickname ||
+        !textValues.realName ||
+        !textValues.originDescription ||
+        !textValues.superpowers ||
+        !textValues.catchPhrase
+      ) {
+        setErrMessage('You should fill all required fields!');
+        return;
+      }
+  
       const createdHero = await createHero(textValues);
-
       const heroId = createdHero.id;
-
+  
       if (photos.length > 0) {
         await uploadPhotos(heroId, photos);
       }
-
+  
+      setErrMessage(null);
       navigate('/');
     } catch (error) {
       console.error('Error creating hero:', error);
     }
   };
+  
 
   const handleBackToList = (): void => {
     navigate('/');
@@ -105,7 +118,7 @@ function CreateHero() {
         </form>
       </div>
       <div className='load-file-wrapper'>
-        <h3>Step 2: Upload Photos</h3>
+        <h3>Step 2: Upload Photos (optional)</h3>
         <input
           type="file"
           accept="image/*"
@@ -114,6 +127,8 @@ function CreateHero() {
         />
       </div>
       <button className='btn' onClick={handleCreateHero}>Create Hero</button>
+      {errMessage && 
+      <p className='error'>{errMessage}</p>}
       <button className='btn' onClick={handleBackToList}>Back to List</button>
     </div>
   );

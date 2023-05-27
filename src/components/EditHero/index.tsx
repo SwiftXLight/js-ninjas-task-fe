@@ -17,6 +17,7 @@ function EditHero() {
     catchPhrase: '',
   });
   const [photos, setPhotos] = useState<File[]>([]);
+  const [errMessage, setErrMessage] = useState<string | null>();
 
   useEffect(() => {
     const fetchHeroDetails = async (): Promise<void> => {
@@ -51,14 +52,25 @@ function EditHero() {
   const handleUpdateHero = async (): Promise<void> => {
     try {
       if (hero) {
+        if (
+          !textValues.nickname ||
+          !textValues.realName ||
+          !textValues.originDescription ||
+          !textValues.superpowers ||
+          !textValues.catchPhrase
+        ) {
+          setErrMessage("You can't leave the field empty!");
+          return;
+        }
+  
         const updatedHeroData = { ...textValues };
-
+  
         await updateHero(hero.id, updatedHeroData);
-
+  
         if (photos.length > 0) {
           await uploadPhotosAppend(hero.id, photos);
         }
-
+  
         navigate('/');
       }
     } catch (error) {
@@ -175,6 +187,8 @@ function EditHero() {
       <button className="btn" onClick={handleUpdateHero}>
         Update Hero
       </button>
+      {errMessage && 
+      <p className='error'>{errMessage}</p>}
       <button className="btn" onClick={handleBackToList}>
         Back to List
       </button>
