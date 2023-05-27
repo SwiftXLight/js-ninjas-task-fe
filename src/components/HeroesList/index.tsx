@@ -9,7 +9,9 @@ import noImage from '../../assets/no_image.png';
 function HeroesList() {
   const navigate = useNavigate();
   const [heroes, setHeroes] = useState<IHeroResponse[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(localStorage.getItem('currentPage')) || 1
+  );
   const [totalPages, setTotalPages] = useState<number>(0);
   const [filter, setFilter] = useState<string>('');
   const [filterMatches, setFilterMatches] = useState<boolean>(true);
@@ -17,6 +19,7 @@ function HeroesList() {
 
   useEffect(() => {
     fetchData(currentPage, filter);
+    localStorage.setItem('currentPage', currentPage.toString());
   }, [currentPage, filter]);
 
   const fetchData = async (page: number, nickname: string): Promise<void> => {
