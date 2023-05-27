@@ -70,6 +70,7 @@ function HeroesList() {
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFilter(event.target.value);
+    setCurrentPage(1);
   };
 
   return (
