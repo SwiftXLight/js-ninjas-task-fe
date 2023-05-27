@@ -30,7 +30,7 @@ export const deleteHero = async (id: number): Promise<void> => {
 
 export const getHeroById = async (id: number): Promise<IHero> => {
   try {
-    const response = await axios.get(`http://localhost:5000/heroes/${id}`);
+    const response = await axios.get(`${API_URL}/heroes/${id}`);
     return response.data;
   } catch (error) {
     throw new Error('Error retrieving hero by ID');
